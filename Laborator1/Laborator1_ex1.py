@@ -1,16 +1,20 @@
-from geompreds import orient2d, incircle
-
-P = tuple(int(i) for i in input("Coordonatele lui P: ").split())
-Q = tuple(int(i) for i in input("Coordonatele lui Q: ").split())
-R = tuple(int(i) for i in input("Coordonatele lui R: ").split())
-
-viraj = orient2d(P, Q, R);
-
-if viraj > 0:
-    print("Viraj la stanga")
-elif viraj < 0:
-    print("Viraj la dreapta")
-else
-    print("Puncte coliniare")
+from geompreds import orient2d
 
 
+def parse_point(line):
+    x, y = line.strip().split()
+    return (float(x), float(y))
+
+
+with open("in_out_samples/1.in", 'r') as fin:
+    n = int(fin.readline())
+    for _ in range(n):
+        a, b, c = parse_point(fin.readline()), parse_point(
+            fin.readline()), parse_point(fin.readline())
+        det = orient2d(a, b, c)
+        if (det > 0):
+            print("stanga")
+        elif (det < 0):
+            print("dreapta")
+        else:
+            print("coliniare")

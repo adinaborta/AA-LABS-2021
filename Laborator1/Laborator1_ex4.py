@@ -29,7 +29,7 @@ def new_best_distance_div(p1, p2, r):
 # points = [(-4, -0), (-3, 2), (-6, -2), (-2, 2), (0, -1), (2, -4),
 #           (-4, 2), (4, -2), (6, 2), (8, 8), (-8, 0), (10, 0)]
 
-points = [(1, 2), (4, 4), (8, 3), (8, 5), (3, 7), (5, 5), (4, 1)]
+points = [(8, 0), (12, 9), (9, 2), (10, 7), (13, 2), (7, 6), (11, 5), (4, 5)]
 
 points.sort(key=lambda point: point[0], reverse=False)
 
@@ -49,11 +49,12 @@ for (ipoint, point) in enumerate(points):
             if n <= 2:
                 break
 
-            orientation = orient2d(infFront[n-3], infFront[n-2], infFront[n-1])
+            orientation = orient2d(
+                infFront[n - 3], infFront[n - 2], infFront[n - 1])
             if orientation > 0:
                 break
             else:
-                infFront.pop(n-2)
+                infFront.pop(n - 2)
                 n -= 1
 c_hull = infFront
 
@@ -68,11 +69,12 @@ for (ipoint, point) in enumerate(reversed(points)):
             if n <= 2:
                 break
 
-            orientation = orient2d(supFront[n-3], supFront[n-2], supFront[n-1])
+            orientation = orient2d(
+                supFront[n - 3], supFront[n - 2], supFront[n - 1])
             if orientation > 0:
                 break
             else:
-                supFront.pop(n-2)
+                supFront.pop(n - 2)
                 n -= 1
 
 points = list(set(points) - set(infFront) - set(supFront))
@@ -92,10 +94,10 @@ for i in range(numberOfIterations):
     for (irpoint, rpoint) in enumerate(points):
         minDistCurr = math.inf
         posCurr = -1
-        for i in range(len(c_hull)-1):
-            dist = new_distance_dif(c_hull[i], c_hull[i+1], rpoint)
+        for i in range(len(c_hull) - 1):
+            dist = new_distance_dif(c_hull[i], c_hull[i + 1], rpoint)
             if dist < minDistCurr:
-                print(c_hull[i], c_hull[i+1])
+                print(c_hull[i], c_hull[i + 1])
                 print(dist)
                 minDistCurr = dist
                 posCurr = i
@@ -122,5 +124,6 @@ for i in range(numberOfIterations):
     c_hull.insert(posBestPoint + 1, points[bestPoint])
     points.pop(bestPoint)
 
-
-print(c_hull)
+print(supFront)
+print(infFront)
+# print(c_hull)

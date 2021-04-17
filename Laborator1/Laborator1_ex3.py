@@ -1,9 +1,11 @@
 from geompreds import orient2d, incircle
 
+
 class Point:
     def __init__(self, x, y):
         self.x = x
         self.y = y
+
 
 def return_orientation(l, r, Q, points):
     resp = binary_search_inf(l, r, Q, points)
@@ -15,8 +17,7 @@ def return_orientation(l, r, Q, points):
         return binary_search_sup(l, r, Q, points)
 
 
-
-def binary_search_sup(l, r, Q, points):  
+def binary_search_sup(l, r, Q, points):
 
     print(l, r)
 
@@ -37,7 +38,6 @@ def binary_search_sup(l, r, Q, points):
                 l = m - 1
             else:
                 l = len(points) - 1
-            
 
         print(l, r)
 
@@ -57,8 +57,7 @@ def binary_search_sup(l, r, Q, points):
         return 0
 
 
-
-def binary_search_inf(l, r, Q, points):  
+def binary_search_inf(l, r, Q, points):
 
     if points[l].x > Q.x or points[r].x < Q.x:
         return -1
@@ -103,12 +102,6 @@ def binary_search_inf(l, r, Q, points):
         else:
             return -1
 
-  
-
-        
-
-
-
 
 # n = int(input("Cate puncte inserati? "))
 # points = []
@@ -127,12 +120,11 @@ def binary_search_inf(l, r, Q, points):
 #         imaxx = i
 #     if x < points[iminx].x:
 #         iminx = i
-        
+
 # print("Punctul Q: ")
 # x = int(input("x: "))
 # y = int(input("y: "))
 # Q = Point(x, y)
-
 
 
 # points = [Point(3, 3), Point(9, 5), Point(12, 7), Point(9, 10), Point(4, 9), Point(2, 6)]
@@ -140,21 +132,17 @@ def binary_search_inf(l, r, Q, points):
 # iminx = 5
 # imaxx = 2
 
+points = [Point(2, 9), Point(3, 3), Point(9, 1), Point(9, 10)]
+Q = [Point(5, 1), Point(9, 5), Point(6, 7)]
 
-points = [Point(3, 3), Point(9, 3), Point(9, 8), Point(3, 8)]
-Q = Point(9, 3)
+for q in Q:
+    iminx = 0
+    imaxx = 1
+    resp = return_orientation(iminx, imaxx, q, points)
 
-
-iminx = 0
-imaxx = 1
-
-
-
-resp = return_orientation(iminx, imaxx, Q, points)
-
-if resp == 0:
-    print("Pe laturi")
-elif resp == 1:
-    print("In interior")
-else:
-    print("In exterior")
+    if resp == 0:
+        print("Pe laturi")
+    elif resp == 1:
+        print("In interior")
+    else:
+        print("In exterior")
