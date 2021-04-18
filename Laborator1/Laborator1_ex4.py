@@ -33,7 +33,7 @@ points = [(8, 0), (12, 9), (9, 2), (10, 7), (13, 2), (7, 6), (11, 5), (4, 5)]
 
 points.sort(key=lambda point: point[0], reverse=False)
 
-print(points)
+# print(points)
 
 infFront = []
 supFront = []
@@ -76,10 +76,12 @@ for (ipoint, point) in enumerate(reversed(points)):
             else:
                 supFront.pop(n - 2)
                 n -= 1
+print(infFront)
+print(supFront)
 
 points = list(set(points) - set(infFront) - set(supFront))
 
-print(points)
+# print(points)
 
 for point in supFront:
     if point not in c_hull:
@@ -97,15 +99,15 @@ for i in range(numberOfIterations):
         for i in range(len(c_hull) - 1):
             dist = new_distance_dif(c_hull[i], c_hull[i + 1], rpoint)
             if dist < minDistCurr:
-                print(c_hull[i], c_hull[i + 1])
-                print(dist)
+                # print(c_hull[i], c_hull[i + 1])
+                # print(dist)
                 minDistCurr = dist
                 posCurr = i
 
         if new_distance_dif(c_hull[0], c_hull[len(c_hull) - 1], rpoint) < minDistCurr:
             posCurr = len(c_hull) - 1
-        print(c_hull[0], c_hull[len(c_hull) - 1])
-        print(new_distance_dif(c_hull[0], c_hull[len(c_hull) - 1], rpoint))
+        # print(c_hull[0], c_hull[len(c_hull) - 1])
+        # print(new_distance_dif(c_hull[0], c_hull[len(c_hull) - 1], rpoint))
 
         if posCurr < (len(c_hull) - 1):
             minDistCurr = new_best_distance_div(
@@ -124,6 +126,6 @@ for i in range(numberOfIterations):
     c_hull.insert(posBestPoint + 1, points[bestPoint])
     points.pop(bestPoint)
 
-print(supFront)
-print(infFront)
-# print(c_hull)
+# print(supFront)
+# print(infFront)
+print(c_hull)
