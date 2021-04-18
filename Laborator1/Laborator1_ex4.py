@@ -1,3 +1,4 @@
+import matplotlib.pyplot as pl
 from geompreds import orient2d, incircle
 import math
 
@@ -29,7 +30,9 @@ def new_best_distance_div(p1, p2, r):
 # points = [(-4, -0), (-3, 2), (-6, -2), (-2, 2), (0, -1), (2, -4),
 #           (-4, 2), (4, -2), (6, 2), (8, 8), (-8, 0), (10, 0)]
 
-points = [(8, 0), (12, 9), (9, 2), (10, 7), (13, 2), (7, 6), (11, 5), (4, 5)]
+# points = [(8, 0), (12, 9), (9, 2), (10, 7), (13, 2), (7, 6), (11, 5), (4, 5)]
+points = [(8, 3), (11, 2), (14, 5), (18, 0), (18, 8),
+          (21, 11), (16, 14), (10, 16), (2, 8), (8, 8)]
 
 points.sort(key=lambda point: point[0], reverse=False)
 
@@ -87,6 +90,10 @@ for point in supFront:
     if point not in c_hull:
         c_hull.append(point)
 
+c_hull.append(c_hull[0])
+xs, ys = zip(*c_hull)
+pl.plot(xs, ys)
+
 numberOfIterations = len(points)
 
 for i in range(numberOfIterations):
@@ -129,3 +136,7 @@ for i in range(numberOfIterations):
 # print(supFront)
 # print(infFront)
 print(c_hull)
+c_hull.append(c_hull[0])
+xs, ys = zip(*c_hull)
+pl.plot(xs, ys, color="green", marker="o")
+pl.show()
