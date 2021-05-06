@@ -63,7 +63,7 @@ with open("in_out_samples/3.in", "r") as fin:
 
     title = None
     res = theta(a, b, c, d)
-    if res == 0:
+    if abs(res - 0) < 1.0e-6:
         title = "conciclice"
     elif res > 0:
         title = "in interior"
